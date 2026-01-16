@@ -1,0 +1,97 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mlip-finetune"
+version = "0.1.0"
+description = "A flexible framework for fine-tuning Machine Learning Interatomic Potentials (MLIPs)"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Your Name", email = "your.email@example.com"}
+]
+keywords = [
+    "machine-learning",
+    "interatomic-potentials",
+    "fine-tuning",
+    "nequip",
+    "mace",
+    "molecular-dynamics",
+    "materials-science"
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Chemistry",
+    "Topic :: Scientific/Engineering :: Physics",
+]
+requires-python = ">=3.9"
+dependencies = [
+    "torch>=2.0.0",
+    "numpy>=1.21.0",
+    "ase>=3.22.0",
+    "pyyaml>=6.0",
+    "tqdm>=4.65.0",
+    "tensorboard>=2.12.0",
+]
+
+[project.optional-dependencies]
+nequip = [
+    "nequip>=0.6.0",
+    "e3nn>=0.5.0",
+]
+mace = [
+    "mace-torch>=0.3.0",
+]
+wandb = [
+    "wandb>=0.15.0",
+]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "flake8>=6.0.0",
+    "mypy>=1.0.0",
+]
+all = [
+    "mlip-finetune[nequip,mace,wandb,dev]",
+]
+
+[project.scripts]
+mlip-ft = "mlip_finetune.cli:main"
+mlip-ft-test = "mlip_finetune.test:main"
+
+[project.urls]
+Homepage = "https://github.com/yourusername/mlip-finetune"
+Documentation = "https://mlip-finetune.readthedocs.io"
+Repository = "https://github.com/yourusername/mlip-finetune"
+Issues = "https://github.com/yourusername/mlip-finetune/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["mlip_finetune*"]
+
+[tool.setuptools.package-data]
+mlip_finetune = ["test_data/*.xyz", "configs/*.yaml"]
+
+[tool.black]
+line-length = 100
+target-version = ['py39', 'py310', 'py311']
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --cov=mlip_finetune --cov-report=term-missing"
+

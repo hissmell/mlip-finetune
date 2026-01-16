@@ -123,32 +123,10 @@ class NequIPWrapper(BaseModelWrapper):
     
     def _prepare_nequip_batch(self, batch: Dict[str, torch.Tensor]) -> Dict[str, torch.Tensor]:
         """Convert batch from our format to NequIP AtomicDataDict format."""
-        from nequip.data import AtomicDataDict
+        from mlip_finetune.keys import to_backend
         
-        nequip_batch = {}
-        
-        # Key mapping: our keys -> NequIP keys
-        key_map = {
-            'pos': AtomicDataDict.POSITIONS_KEY,
-            'atom_types': AtomicDataDict.ATOM_TYPE_KEY,
-            'edge_index': AtomicDataDict.EDGE_INDEX_KEY,
-            'edge_cell_shift': AtomicDataDict.EDGE_CELL_SHIFT_KEY,
-            'cell': AtomicDataDict.CELL_KEY,
-            'pbc': AtomicDataDict.PBC_KEY,
-            'batch': AtomicDataDict.BATCH_KEY,
-            'total_energy': AtomicDataDict.TOTAL_ENERGY_KEY,
-            'forces': AtomicDataDict.FORCE_KEY,
-            'stress': AtomicDataDict.STRESS_KEY,
-        }
-        
-        for our_key, nequip_key in key_map.items():
-            if our_key in batch:
-                nequip_batch[nequip_key] = batch[our_key]
-        
-        # Copy any keys that are already in NequIP format
-        for key in batch:
-            if key not in key_map and key not in nequip_batch:
-                nequip_batch[key] = batch[key]
+        # Use the key registry to convert standard keys to NequIP keys
+        nequip_batch = to_backend(batch, 'nequip')
         
         return nequip_batch
     

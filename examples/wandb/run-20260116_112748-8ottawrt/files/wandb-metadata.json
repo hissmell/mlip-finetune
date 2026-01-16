@@ -1,0 +1,40 @@
+{
+  "os":  "Linux-6.6.13-200.fc36.x86_64-x86_64-with-glibc2.35",
+  "python":  "CPython 3.10.19",
+  "startedAt":  "2026-01-16T02:27:48.408069Z",
+  "program":  "/DATA/user_scratch/pn50212/2025/01_Moire/Finetuning/mlip-finetune/examples/train_naive.py",
+  "codePath":  "examples/train_naive.py",
+  "codePathLocal":  "train_naive.py",
+  "git":  {
+    "remote":  "https://github.com/hissmell/mlip-finetune.git",
+    "commit":  "83476dbe877d8978221f292375f9336aa328d7c4"
+  },
+  "email":  "snupark@snu.ac.kr",
+  "root":  "/DATA/user_scratch/pn50212/2025/01_Moire/Finetuning/mlip-finetune/examples",
+  "host":  "tgm-master.hpc",
+  "executable":  "/home/pn50212/anaconda3/envs/finetuning/bin/python",
+  "cpu_count":  32,
+  "cpu_count_logical":  32,
+  "gpu":  "NVIDIA RTX A4500",
+  "gpu_count":  1,
+  "disk":  {
+    "/":  {
+      "total":  "980254892032",
+      "used":  "359222992896"
+    }
+  },
+  "memory":  {
+    "total":  "201421701120"
+  },
+  "gpu_nvidia":  [
+    {
+      "name":  "NVIDIA RTX A4500",
+      "memoryTotal":  "21464350720",
+      "cudaCores":  7168,
+      "architecture":  "Ampere",
+      "uuid":  "GPU-4874c2d4-c057-95f8-63e0-d183c9cf6374"
+    }
+  ],
+  "cudaVersion":  "13.0",
+  "writerId":  "vdvxa0rv4le99ohcn13yh33z4jdp0dno"
+}

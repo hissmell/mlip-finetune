@@ -159,12 +159,13 @@ class Trainer:
     def _setup_data(self) -> None:
         """Setup data loaders."""
         data_config = self.config['data']
-        r_max = self.config['model'].get('r_max', 6.0)
+        r_max = float(self.config['model'].get('r_max', 6.0))
+        batch_size = int(data_config.get('batch_size', 8))
         
         # Create full dataset loader
         full_loader = create_dataloader(
             file_path=data_config['finetune_data'],
-            batch_size=data_config.get('batch_size', 8),
+            batch_size=batch_size,
             r_max=r_max,
             shuffle=False,
         )
@@ -173,9 +174,9 @@ class Trainer:
         dataset = full_loader.dataset
         n_total = len(dataset)
         
-        train_split = data_config.get('train_split', 0.8)
-        val_split = data_config.get('val_split', 0.2)
-        test_split = data_config.get('test_split', 0.0)
+        train_split = float(data_config.get('train_split', 0.8))
+        val_split = float(data_config.get('val_split', 0.2))
+        test_split = float(data_config.get('test_split', 0.0))
         
         n_train = int(n_total * train_split)
         n_val = int(n_total * val_split)
@@ -189,14 +190,14 @@ class Trainer:
         
         self.train_loader = DataLoader(
             train_dataset,
-            batch_size=data_config.get('batch_size', 8),
+            batch_size=batch_size,
             shuffle=True,
             collate_fn=collate_atomic_data,
         )
         
         self.val_loader = DataLoader(
             val_dataset,
-            batch_size=data_config.get('batch_size', 8),
+            batch_size=batch_size,
             shuffle=False,
             collate_fn=collate_atomic_data,
         )
@@ -204,7 +205,7 @@ class Trainer:
         if n_test > 0:
             self.test_loader = DataLoader(
                 test_dataset,
-                batch_size=data_config.get('batch_size', 8),
+                batch_size=batch_size,
                 shuffle=False,
                 collate_fn=collate_atomic_data,
             )
@@ -230,7 +231,7 @@ class Trainer:
         training_config = self.config['training']
         
         # Optimizer
-        lr = training_config.get('lr', 1e-4)
+        lr = float(training_config.get('lr', 1e-4))
         optimizer_name = training_config.get('optimizer', 'adam').lower()
         
         params = self.strategy.get_trainable_parameters()
@@ -252,9 +253,9 @@ class Trainer:
             self.scheduler = optim.lr_scheduler.ReduceLROnPlateau(
                 self.optimizer,
                 mode='min',
-                factor=scheduler_config.get('factor', 0.5),
-                patience=scheduler_config.get('patience', 10),
-                min_lr=scheduler_config.get('min_lr', 1e-6),
+                factor=float(scheduler_config.get('factor', 0.5)),
+                patience=int(scheduler_config.get('patience', 10)),
+                min_lr=float(scheduler_config.get('min_lr', 1e-6)),
             )
         elif scheduler_type == 'CosineAnnealing':
             self.scheduler = optim.lr_scheduler.CosineAnnealingLR(
@@ -290,6 +291,7 @@ class Trainer:
                 tags=wandb_config.get('tags'),
                 notes=wandb_config.get('notes'),
                 log_model=wandb_config.get('log_model', False),
+                api_key=wandb_config.get('api_key'),  # Optional: set via config or WANDB_API_KEY env
             ))
     
     def fit(self) -> Dict[str, Any]:

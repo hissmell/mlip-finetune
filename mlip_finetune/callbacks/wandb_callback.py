@@ -47,6 +47,7 @@ class WandBCallback(Callback):
         notes: Optional[str] = None,
         log_model: bool = False,
         log_freq: int = 1,
+        api_key: Optional[str] = None,
     ):
         self.project = project
         self.name = name
@@ -56,6 +57,7 @@ class WandBCallback(Callback):
         self.notes = notes
         self.log_model = log_model
         self.log_freq = log_freq
+        self.api_key = api_key
         
         self.run = None
         self._step = 0
@@ -69,6 +71,10 @@ class WandBCallback(Callback):
                 "wandb not installed. Install with: pip install wandb"
             )
             return
+        
+        # Login with API key if provided
+        if self.api_key:
+            wandb.login(key=self.api_key)
         
         # Merge trainer config with extra config
         config = {**trainer.config, **self.extra_config}

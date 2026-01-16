@@ -1,0 +1,116 @@
+_wandb:
+    value:
+        cli_version: 0.23.1
+        e:
+            iiwhjkbo0od5it9sxfmqf0zsvs8xdmpp:
+                codePath: examples/train_naive.py
+                codePathLocal: train_naive.py
+                cpu_count: 32
+                cpu_count_logical: 32
+                cudaVersion: "13.0"
+                disk:
+                    /:
+                        total: "980254892032"
+                        used: "359222976512"
+                email: snupark@snu.ac.kr
+                executable: /home/pn50212/anaconda3/envs/finetuning/bin/python
+                git:
+                    commit: 83476dbe877d8978221f292375f9336aa328d7c4
+                    remote: https://github.com/hissmell/mlip-finetune.git
+                gpu: NVIDIA RTX A4500
+                gpu_count: 1
+                gpu_nvidia:
+                    - architecture: Ampere
+                      cudaCores: 7168
+                      memoryTotal: "21464350720"
+                      name: NVIDIA RTX A4500
+                      uuid: GPU-4874c2d4-c057-95f8-63e0-d183c9cf6374
+                host: tgm-master.hpc
+                memory:
+                    total: "201421701120"
+                os: Linux-6.6.13-200.fc36.x86_64-x86_64-with-glibc2.35
+                program: /DATA/user_scratch/pn50212/2025/01_Moire/Finetuning/mlip-finetune/examples/train_naive.py
+                python: CPython 3.10.19
+                root: /DATA/user_scratch/pn50212/2025/01_Moire/Finetuning/mlip-finetune/examples
+                startedAt: "2026-01-16T02:25:11.334302Z"
+                writerId: iiwhjkbo0od5it9sxfmqf0zsvs8xdmpp
+        m: []
+        python_version: 3.10.19
+        t:
+            "1":
+                - 1
+                - 50
+                - 106
+            "2":
+                - 1
+                - 50
+                - 106
+            "3":
+                - 13
+                - 15
+                - 16
+                - 62
+            "4": 3.10.19
+            "5": 0.23.1
+            "10":
+                - 20
+            "12": 0.23.1
+            "13": linux-x86_64
+data:
+    value:
+        batch_size: 8
+        finetune_data: /DATA/user_scratch/pn50212/2025/01_Moire/Finetuning/mlip-finetune/mlip_finetune/test_data/bto_100.xyz
+        test_split: 0
+        train_split: 0.8
+        val_split: 0.2
+deterministic:
+    value: true
+device:
+    value: cuda
+logging:
+    value:
+        log_interval: 1
+        save_checkpoint_interval: 10
+        tensorboard: true
+        wandb:
+            enabled: true
+            entity: null
+            log_model: false
+            name: test_naive
+            project: test_mlip-finetune
+            tags:
+                - naive
+loss_coeffs:
+    value:
+        energy: 0
+        force: 100
+        stress: 0
+metrics:
+    value:
+        - energy_mae
+        - force_mae
+        - force_cosine
+model:
+    value:
+        architecture: nequip
+        compile_mode: eager
+        package_path: /DATA/user_scratch/pn50212/2025/01_Moire/Finetuning/NequIP-OAM-L-0.1.nequip.zip
+        r_max: 6
+seed:
+    value: 42
+strategy:
+    value:
+        name: naive
+training:
+    value:
+        early_stopping:
+            min_delta: "1e-6"
+            patience: 20
+        epochs: 1
+        lr: "1e-4"
+        optimizer: adam
+        scheduler:
+            factor: 0.5
+            min_lr: "1e-6"
+            patience: 10
+            type: ReduceLROnPlateau

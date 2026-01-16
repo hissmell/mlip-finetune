@@ -1,0 +1,31 @@
+Epoch 1:   0%|                                                                                                                                                                                                    | 0/10 [00:02<?, ?it/s]
+Traceback (most recent call last):
+  File "/DATA/user_scratch/pn50212/2025/01_Moire/Finetuning/mlip-finetune/examples/train_naive.py", line 10, in <module>
+    trainer.fit()
+  File "/DATA/user_scratch/pn50212/2025/01_Moire/Finetuning/mlip-finetune/mlip_finetune/trainers/trainer.py", line 319, in fit
+    train_metrics = self._train_epoch()
+  File "/DATA/user_scratch/pn50212/2025/01_Moire/Finetuning/mlip-finetune/mlip_finetune/trainers/trainer.py", line 404, in _train_epoch
+    output = self.model(batch)
+  File "/home/pn50212/anaconda3/envs/finetuning/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/pn50212/anaconda3/envs/finetuning/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/DATA/user_scratch/pn50212/2025/01_Moire/Finetuning/mlip-finetune/mlip_finetune/models/nequip_wrapper.py", line 106, in forward
+    output = self.model(nequip_batch)
+  File "/home/pn50212/anaconda3/envs/finetuning/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/pn50212/anaconda3/envs/finetuning/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "<torch_package_0>.nequip/nn/graph_model.py", line 116, in forward
+    return self.model(new_data)
+  File "/home/pn50212/anaconda3/envs/finetuning/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/pn50212/anaconda3/envs/finetuning/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "<torch_package_0>.nequip/nn/grad_output.py", line 209, in forward
+    grads = torch.autograd.grad(
+  File "/home/pn50212/anaconda3/envs/finetuning/lib/python3.10/site-packages/torch/autograd/__init__.py", line 503, in grad
+    result = _engine_run_backward(
+  File "/home/pn50212/anaconda3/envs/finetuning/lib/python3.10/site-packages/torch/autograd/graph.py", line 841, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 410.00 MiB. GPU 0 has a total capacity of 19.57 GiB of which 202.06 MiB is free. Including non-PyTorch memory, this process has 19.37 GiB memory in use. Of the allocated memory 18.82 GiB is allocated by PyTorch, and 332.44 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

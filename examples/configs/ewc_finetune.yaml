@@ -60,8 +60,7 @@ strategy:
 
 logging:
   tensorboard: true
-  log_interval: 1
-  save_checkpoint_interval: 10
+  save_checkpoint_interval: 10  # Save checkpoint every N epochs
   
   # Weights & Biases configuration
   wandb:

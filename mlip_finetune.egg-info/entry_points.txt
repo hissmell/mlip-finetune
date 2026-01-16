@@ -1,0 +1,3 @@
+[console_scripts]
+mlip-ft = mlip_finetune.cli:main
+mlip-ft-test = mlip_finetune.test:main

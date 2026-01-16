@@ -68,6 +68,7 @@ all = [
 [project.scripts]
 mlip-ft = "mlip_finetune.cli:main"
 mlip-ft-test = "mlip_finetune.test:main"
+mlip-ft-vasp2xyz = "mlip_finetune.data.vasp_converter:main"
 
 [project.urls]
 Homepage = "https://github.com/yourusername/mlip-finetune"

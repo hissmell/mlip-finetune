@@ -13,6 +13,7 @@ mlip_finetune/callbacks/__init__.py
 mlip_finetune/callbacks/base.py
 mlip_finetune/callbacks/checkpoint.py
 mlip_finetune/callbacks/early_stopping.py
+mlip_finetune/callbacks/parity_plot_callback.py
 mlip_finetune/callbacks/tensorboard.py
 mlip_finetune/callbacks/wandb_callback.py
 mlip_finetune/configs/__init__.py
@@ -20,6 +21,7 @@ mlip_finetune/configs/config.py
 mlip_finetune/data/__init__.py
 mlip_finetune/data/collate.py
 mlip_finetune/data/datasets.py
+mlip_finetune/data/vasp_converter.py
 mlip_finetune/keys/__init__.py
 mlip_finetune/keys/mace.py
 mlip_finetune/keys/nequip.py
@@ -41,6 +43,7 @@ mlip_finetune/trainers/__init__.py
 mlip_finetune/trainers/trainer.py
 mlip_finetune/utils/__init__.py
 mlip_finetune/utils/fisher.py
+mlip_finetune/utils/plotting.py
 tests/test_metrics.py
 tests/test_strategies.py
 tests/test_training_integration.py

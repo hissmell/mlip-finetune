@@ -293,6 +293,18 @@ class Trainer:
                 log_model=wandb_config.get('log_model', False),
                 api_key=wandb_config.get('api_key'),  # Optional: set via config or WANDB_API_KEY env
             ))
+        
+        # Parity plot callback
+        parity_config = logging_config.get('parity_plots', {})
+        if parity_config.get('enabled', True):  # Enabled by default
+            from mlip_finetune.callbacks import ParityPlotCallback
+            self.callbacks.append(ParityPlotCallback(
+                save_dir=self.exp_dir,
+                save_interval=int(parity_config.get('save_interval', 10)),
+                plot_energy=parity_config.get('plot_energy', True),
+                plot_force=parity_config.get('plot_force', True),
+                per_atom_energy=parity_config.get('per_atom_energy', True),
+            ))
     
     def fit(self) -> Dict[str, Any]:
         """

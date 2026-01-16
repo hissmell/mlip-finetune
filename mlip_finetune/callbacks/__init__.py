@@ -5,6 +5,7 @@ from mlip_finetune.callbacks.checkpoint import CheckpointCallback
 from mlip_finetune.callbacks.tensorboard import TensorBoardCallback
 from mlip_finetune.callbacks.early_stopping import EarlyStoppingCallback
 from mlip_finetune.callbacks.wandb_callback import WandBCallback, WandBSweepCallback
+from mlip_finetune.callbacks.parity_plot_callback import ParityPlotCallback
 
 __all__ = [
     "Callback",
@@ -14,5 +15,6 @@ __all__ = [
     "EarlyStoppingCallback",
     "WandBCallback",
     "WandBSweepCallback",
+    "ParityPlotCallback",
 ]
 

@@ -46,6 +46,14 @@ logging:
   tensorboard: true
   save_checkpoint_interval: 10  # Save checkpoint every N epochs
   
+  # Parity plots (energy & force)
+  parity_plots:
+    enabled: true
+    save_interval: 1  # Generate plots every N epochs
+    plot_energy: true
+    plot_force: true
+    per_atom_energy: true  # Use per-atom energy for plotting
+  
   # Weights & Biases (optional)
   wandb:
     enabled: true

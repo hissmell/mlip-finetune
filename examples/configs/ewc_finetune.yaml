@@ -3,19 +3,19 @@
 
 model:
   architecture: nequip
-  package_path: /path/to/pretrained_model.nequip.zip
+  package_path: /DATA/user_scratch/pn50212/2025/01_Moire/Finetuning/NequIP-OAM-L-0.1.nequip.zip
   r_max: 6.0
   compile_mode: eager
 
 data:
-  finetune_data: /path/to/finetune_data.xyz
-  batch_size: 8
+  finetune_data: /DATA/user_scratch/pn50212/2025/01_Moire/Finetuning/mlip-finetune/mlip_finetune/test_data/bto_100.xyz
+  batch_size: 4
   train_split: 0.8
   val_split: 0.2
   test_split: 0.0
 
 training:
-  epochs: 100
+  epochs: 3
   lr: 1e-4
   optimizer: adam
   scheduler:
@@ -45,8 +45,8 @@ strategy:
   name: ewc
   
   # EWC-specific parameters
-  ewc_lambda: 1000.0                    # Regularization strength
-  precomputed_fisher_path: /path/to/fisher.pt  # Pre-computed Fisher matrix
+  ewc_lambda: 0.001                  # Regularization strength
+  precomputed_fisher_path: /DATA/user_scratch/pn50212/2025/01_Moire/Finetuning/MLIP_Finetuning_Strategies/fisher_matrices/MPtraj_proper.pt  # Pre-computed Fisher matrix
   
   # Fisher computation settings (if not using precomputed)
   fisher_samples: null                  # null = use all samples
@@ -60,7 +60,7 @@ strategy:
 
 logging:
   tensorboard: true
-  save_checkpoint_interval: 10  # Save checkpoint every N epochs
+  save_checkpoint_interval: 1  # Save checkpoint every N epochs
   
   # Weights & Biases configuration
   wandb:

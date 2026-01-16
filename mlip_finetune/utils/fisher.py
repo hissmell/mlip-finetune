@@ -81,7 +81,9 @@ def compute_fisher_information_matrix(
             loss = _compute_loss(output, batch, loss_coeffs)
             
             if loss.requires_grad:
-                loss.backward()
+                # Use retain_graph=True because NequIP models use autograd
+                # for force computation, so the graph may already be partially used
+                loss.backward(retain_graph=True)
         
         # Accumulate squared gradients
         for name, param in model.named_parameters():

@@ -68,9 +68,11 @@ class EWCStrategy(BaseStrategy):
         self.last_ewc_penalty: Optional[float] = None
         
         # Pre-computed Fisher loading
+        self.use_precomputed_fisher = False
         precomputed_path = config.get('precomputed_fisher_path')
         if precomputed_path:
             self.load_precomputed_fisher(precomputed_path)
+            self.use_precomputed_fisher = True
     
     def load_precomputed_fisher(self, path: str) -> None:
         """Load pre-computed Fisher information from file."""
@@ -187,6 +189,11 @@ class EWCStrategy(BaseStrategy):
     
     def after_task(self, task_id: int, dataloader: Optional[DataLoader] = None) -> None:
         """Compute and store Fisher information after task completion."""
+        # Skip Fisher computation if using precomputed Fisher
+        if self.use_precomputed_fisher:
+            logger.info("Using precomputed Fisher, skipping Fisher computation after task")
+            return
+        
         if dataloader is None:
             logger.warning("No dataloader provided for Fisher computation")
             return
